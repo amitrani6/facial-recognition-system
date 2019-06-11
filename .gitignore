@@ -109,8 +109,6 @@ venv.bak/
 *.log
 *.sql
 *.sqlite
-*.jpg
-*.mat
 
 # Folders
 imdb_data/
