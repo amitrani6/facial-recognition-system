@@ -105,16 +105,17 @@ venv.bak/
 
 #########Added#########
 
-# Logs and databases 
+# Logs and databases
 *.log
 *.sql
 *.sqlite
 
 # Folders
+image_data/
 imdb_data/
 wiki_data/
 
-# OS generated files 
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
