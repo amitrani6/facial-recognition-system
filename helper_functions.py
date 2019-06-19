@@ -22,6 +22,8 @@ from tensorflow.keras.models import load_model
 import ast
 
 import os
+from os import path
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -189,11 +191,20 @@ take_another_picture = True
 
 while take_another_picture:
     
-    print('Obtaining the image pixels\n\n')
+    user_file = input('What is the file name of the picture that you would like to detect? ')
+    
+    file_exists = False
+    
+    while not file_exists:
+       
+        if path.exists("image_data/user_images/" + user_file):
+            file_exists = True
+            print('Obtaining the image pixels\n\n')
+            break
+        user_file = input("The file wasn't found, please enter another file: ")
+        
     #open camera_take_picture
-    
-    
-    image_pixels = obtain_image_pixels("image_data/user_images/user.jpg")
+    image_pixels = obtain_image_pixels("image_data/user_images/{}".format(user_file))
     print('Plotting the image pixels\n\n')
     plot_face(image_pixels)
     print('Obtaining the face areas\n\n')
