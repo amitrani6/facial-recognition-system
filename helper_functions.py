@@ -54,10 +54,9 @@ photo_df_b = pd.read_csv('Photo_Dataframes/photo_dfs_with_embeddings_fn/photo_da
 photo_df_c = pd.read_csv('Photo_Dataframes/photo_dfs_with_embeddings_fn/photo_dataframe_fn_embeddings_c.csv')
 photo_df_d = pd.read_csv('Photo_Dataframes/photo_dfs_with_embeddings_fn/photo_dataframe_fn_embeddings_d.csv')
 photo_df_e = pd.read_csv('Photo_Dataframes/photo_dfs_with_embeddings_fn/photo_dataframe_fn_embeddings_e.csv')
-photo_df_f = pd.read_csv('Photo_Dataframes/photo_dfs_with_embeddings_fn/photo_dataframe_fn_embeddings_f.csv')
 
 #####Concat the dataframes#####
-photo_df = pd.concat([photo_df_a, photo_df_b, photo_df_c, photo_df_d, photo_df_e, photo_df_f]).reset_index(drop=True)
+photo_df = pd.concat([photo_df_a, photo_df_b, photo_df_c, photo_df_d, photo_df_e]).reset_index(drop=True)
 
 #print(photo_df.head())
 

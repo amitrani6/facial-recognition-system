@@ -25,6 +25,6 @@ def take_a_user_picture(file_name):
             img_name = "image_data/user_images/{}".format(file_name)
             cv2.imwrite(img_name, frame)
             img_counter += 1
+            break
     cam.release()
-    return None
     cv2.destroyAllWindows()
