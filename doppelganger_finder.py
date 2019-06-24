@@ -259,15 +259,26 @@ while take_another_picture:
             distance = instance['cosine']
             img = cv2.imread(instance['file_path'])
             print(str(i+1),".",name," (",instance['cosine'],")")
+            plt.title(instance['name'] + ", cosine similarity: " + str(round(instance['cosine'], 4)))
             plt.axis('off')
             plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
             plt.show()
+            
+        if len(user_embeddings) > 1:
+            continue_making_predictions = input("Would you like me to make more predictions based on this picture? (Y/N) ")
+        
+            continue_making_predictions = continue_making_predictions.lower()
+        
+            if "n" in continue_making_predictions:
+                break
+            
+            
             
     a = input("Would you like to take another picture? (Y/N) ")
     
     a = a.upper()
     
-    if a == 'Y':
+    if 'Y' in a:
         take_another_picture = True
         
     else:
