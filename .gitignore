@@ -111,7 +111,6 @@ venv.bak/
 *.sqlite
 
 # Folders
-image_data/
 imdb_data/
 wiki_data/
 unzi again/
