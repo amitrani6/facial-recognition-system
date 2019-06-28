@@ -5,6 +5,12 @@ doppelganger_finder.py
 
 """
 
+#doppelganger_finder.py is the main file of the facial recognition system
+#This python script will take a picture of one or more users and display
+#the most similar faces by cosine similarity
+
+##########################################################################
+
 print("\n\nOpening The Doppelganger Finder Application.\n\n")
 
 #####Load necessary libraries and external files#####
@@ -16,37 +22,30 @@ from numpy import asarray
 from PIL import Image
 
 from numpy import expand_dims
-from numpy import savez_compressed
-
-from tensorflow.keras.models import load_model
 
 import ast
 
+#There are several Keras/TensorFlow deprecation warnings about
+#future updates, I use the following code to ignore some of them
 import os
-from os import path
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-from sklearn.metrics.pairwise import cosine_similarity
-
-import matplotlib.pyplot as plt
-
 import warnings
 warnings.filterwarnings('ignore')
 
+import matplotlib.pyplot as plt
+
 from mtcnn.mtcnn import MTCNN
 
+#This is the file with the function that takes a picture with the devices' webcam
 from photo_program import *
+#This is the file with the functions that locate a face within a picture, use
+#the Keras FaceNet CNN model, and faces by cosine similarity
+from face_detection_functions import *
 
 import cv2
-from cv2 import CascadeClassifier
-classifier = CascadeClassifier('cascade_models/haarcascade_frontalface_default.xml')
-
-# Load the FaceNet model
-facenet_model = load_model('FaceNet_Model/facenet_keras.h5')
-facenet_model.load_weights('FaceNet_Model/facenet_keras_weights.h5')
 
 ##########################################################
 
@@ -61,198 +60,91 @@ photo_df_e = pd.read_csv('Photo_Dataframes/photo_dfs_with_embeddings_fn/photo_da
 #####Concat the dataframes#####
 photo_df = pd.concat([photo_df_a, photo_df_b, photo_df_c, photo_df_d, photo_df_e]).reset_index(drop=True)
 
-#print(photo_df.head())
-
 ##########################################################
 
 #####Convert the dataframes' embedding columns to arrays#####
 
 def convert_csv_to_embeddings(embedding_string):
-    
+
     #I replace the '\n' and spaces in descending sequential order
     embedding_string = embedding_string.replace('\n', '').replace('     ', ' ').replace('    ', ' ').replace('   ', ' ').replace('  ', ' ').replace('[ ', '[').replace(' ]', ']').replace(' ', ', ')
-    
-    #This returns the string as an array in the proper type
+
+    #This returns the string as a numpy array
     return asarray(ast.literal_eval(embedding_string)).astype('float32')
 
-print('Loading the dataframe, possibly more than one moment please.\n')
+print('\nLoading the dataframe, possibly more than one moment please.\n')
 photo_df.embeddings_fn = photo_df.embeddings_fn.apply(lambda x: convert_csv_to_embeddings(x))
 print('The dataframe is now loaded.\n')
 
 ##########################################################
 
-#####The Main Functions For Image Detection And Prediction#####
-
-#Function 1: Takes in a file path and obtains the pixels of an image
-#Converts the image to RGB format if Black and White
-def obtain_image_pixels(filename):
-    image = Image.open(filename)
-    image = image.convert('RGB')
-    return asarray(image)
-
-#Function 2: Plots the Face given and array of images
-def plot_face(face_data, is_array = True):
-    
-    #A use case if the array is sent
-    if is_array:
-        # plot face
-        plt.axis('off')
-        plt.imshow(face_data)
-        plt.show()
-
-#Function 3: Given an image array this function returns the faces detected as a list
-#The list is empty if nothing is detected
-def get_all_faces(image_array):
-    
-    #Crop the face further with MTCNN
-    detector = MTCNN()
-    
-    #Obtain the first detected face in the cropped face picture
-    faces_detected = detector.detect_faces(image_array)
-    
-    #MTCNN already returns the list by sorted confidence level
-    return faces_detected
-
-#Function 4: Takes in the image array and a face location and returns the resized face as an arrays
-
-def resize_picture(image_array, face_box, dimensions = (160,160), margin = 0):
-            
-    #Set a margin boolean and while loop to try margin value
-    margin_error = True
-    
-    while margin_error:
-    
-        try:
-        
-            # get coordinates
-            x1, y1, width, height = face_box['box']
-            x2, y2 = x1 + width + margin, y1 + height + margin       
-            x1 -= margin
-            y1 -= margin 
-        
-            face_array = image_array[y1:y2, x1:x2]
-    
-            face_array_resized = Image.fromarray(face_array)
-            face_array_resized = face_array_resized.resize(dimensions)
-            
-            margin_error = False
-            break
-            
-        except:
-            
-            if margin > 0: 
-                margin -= 1
-            else:
-                face_array_resized = Image.fromarray(image_array)
-                face_array_resized = face_array_resized.resize(dimensions)
-                break
-    
-    return asarray(face_array_resized)
-
-#Function 5: Takes in the entire inage and list of face locations and outputs a list of individually resized faces represented as arrays. You can give the model's required image dimensions and a margin.
-
-
-def get_all_resized_faces(all_image_pixels, dimensions = (160,160), margin = 0):
-    
-    all_image_faces = get_all_faces(all_image_pixels)
-    
-    face_array_list = []
-    
-    #The reason I return the entire image is because the main dataset already lists minimum
-    #detected confidence level by face, I remove certain images by this value later
-    if len(all_image_faces) == 0:
-        print('No faces were found, the entire image will process.')
-        face_array_list.append(all_image_pixels)
-    else:
-        for i in all_image_faces:
-            face_array_list.append(resize_picture(all_image_pixels, i, dimensions, margin))
-            
-    return face_array_list
-
-
-#Function 6: Takes in one face array and makes a prediction
-
-#This function is adapted from "Deep Learning for Computer Vision" Page 488 by Jason Brownlee
-
-def make_a_prediction(face_array):
-    face_array = face_array.astype('float32')
-    
-    # standardize pixel values across channels
-    mean, std = face_array.mean(), face_array.std()
-    face_array = (face_array - mean) / std
-    
-    
-    # transform face into one observation to be vectorized
-    observation = expand_dims(face_array, axis=0)
-    
-    yhat = facenet_model.predict(observation)
-    return yhat[0]
-
+#I use a while loop to run my program until the variable 'take_another_picture'
+#is equal to False. The process is as follows:
+#       1. Take the user picture
+#       2. Obtain the face embeddings vector for the user picture
+#       3. Calculate the cosine similarity between the faces in the user picture
+#          and the faces in the data frame
+#       4. Output the results
+#       5. Repeat the process if 'take_another_picture' equals True
 
 take_another_picture = True
 
 while take_another_picture:
-    
+
+    #user_file is the name of the file to be saved
     user_file = 'user.jpg'
-    
+
+    #take_a_user_picture takes a photo of a user and saves the file
+    #This function comes from 'photo_program.py'
     take_a_user_picture(user_file)
-    
-#     file_exists = False
-    
-#     while not file_exists:
-       
-#         if path.exists("image_data/user_images/" + user_file):
-#             file_exists = True
-#             print('Obtaining the image pixels\n\n')
-#             break
-#         user_file = input("The file wasn't found, please enter another file: ")
-        
-    #open camera_take_picture
-    
+
+    #The following functions come from 'face_detection_functions.py' please see
+    #this file for additional  comments
+
+    #'image_pixels' is a three dimensional tensor representing the RGB channels
+    #of the user image as a numpy array data type
     image_pixels = obtain_image_pixels("image_data/user_images/{}".format(user_file))
     print('Plotting the image pixels\n\n')
+
     plot_face(image_pixels)
     print('Obtaining the face areas\n\n')
+
+    #'face_arrays' is a list of the locations of all the faces in the image
     face_arrays = get_all_faces(image_pixels)
     print('Obtaining the resized faces\n\n')
+
+    #'resized_face_arrays' is a list of resized faces stored as face_arrays
+    #The size of each face is adjusted to 160 by 160 as this is the required size
+    #of the FaceNet model. A margin of twenty pixels is added to the face to
+    #prevent the loss of valuable face features on the edge of the face
     resized_face_arrays = get_all_resized_faces(image_pixels, margin = 20)
     print('Plotting the resized faces\n\n')
-#     for i in resized_face_arrays:
-#         plot_face(i)
 
     print('Making Face predictions with FaceNet.\n\n')
     user_embeddings = []
 
     for i in resized_face_arrays:
+        #This line of code obtains the 128 length vector face embeddings
         user_embeddings.append(make_a_prediction(i))
 
-
-    #Cosine Similarity from Danushka
-    def findCosineSimilarity(source_representation, user_representation):
-        try:
-            cos = np.dot(source_representation, user_representation) / (np.sqrt(np.dot(source_representation, source_representation)) * np.sqrt(np.dot(user_representation, user_representation)))
-            return cos
-        except:
-            return 10 #assign a large value in exception. similar faces will have small value.
-
-    print('Entering the embedding for loop.\n\n')   
+    #This for loop runs through each detected face in the list of face embeddings
+    print('Entering the embedding for loop.\n\n')
     for i in range(0,len(user_embeddings)):
 
-
+        #Adds the cosine similarity of the specific user to all images in the
+        #data frame
         print('Adding Face predictions to dataframe.\n\n')
-
         photo_df['cosine'] = photo_df['embeddings_fn'].apply(lambda x: findCosineSimilarity(x, user_embeddings[i]))
 
         print('Plotting the resized image.\n\n')
-
         plot_face(resized_face_arrays[i])
 
+        #Sorts the data frame by cosine similarity in descending order
         print('Sorting predictions with FaceNet.\n\n')
-
         photo_df = photo_df.sort_values(by = ['cosine'], ascending = False)
 
+        #displays the three most similar faces to the user face
         print('About to print predictions with FaceNet.\n\n')
-
         for i in range(0, 3):
             instance = photo_df.iloc[i]
             name = instance['name']
@@ -263,25 +155,27 @@ while take_another_picture:
             plt.axis('off')
             plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
             plt.show()
-            
+
+        #I give the option to skip over user faces if multiple faces are detected.
+        #This is because I did not want to flip through multiple faces that were
+        #detected in the background of the user picture.
         if len(user_embeddings) > 1:
             continue_making_predictions = input("Would you like me to make more predictions based on this picture? (Y/N) ")
-        
+
             continue_making_predictions = continue_making_predictions.lower()
-        
+
             if "n" in continue_making_predictions:
                 break
-            
-            
-            
+
+
+    #The following code is for the option to take another user picture.
     a = input("Would you like to take another picture? (Y/N) ")
-    
     a = a.upper()
-    
+
     if 'Y' in a:
         take_another_picture = True
-        
+
     else:
         take_another_picture = False
-        
+
         break
