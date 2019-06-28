@@ -1,4 +1,5 @@
 #This function is adapted from user derricw's answer on from Stack Overflow
+#https://stackoverflow.com/questions/34588464/python-how-to-capture-image-from-webcam-on-click-using-opencv/34588758#34588758
 
 #The function takes in a file name and then takes a picture of the user while
 #displaying a camera. Once the photo is taken (by pressing the space bar) the
@@ -9,13 +10,23 @@
 import cv2
 
 def take_a_user_picture(file_name):
+    
+    #This line opens the primary camera "0" on the device to take a picture
     cam = cv2.VideoCapture(0)
     cv2.startWindowThread()
     cv2.namedWindow("Input Photo")
     img_counter = 0
 
     while True:
+        
+        #Each photo taken with the .read() function returns a threshold value
+        #'retval' or 'ret' and the frame itself. The threshold value here is
+        #the optimal value of pixel intensity that determines if the pixel
+        #intensity will be itself or a set value (i.e. 0 {black on grayscale}
+        #to 255 {white on grayscale}).
         ret, frame = cam.read()
+        
+        #Displays the webcam feed on the screen
         cv2.imshow("Input Photo", frame)
         if not ret:
             break
@@ -32,6 +43,6 @@ def take_a_user_picture(file_name):
             cv2.imwrite(img_name, frame)
             img_counter += 1
             break
-
+    #Closes the camera and window
     cam.release()
     cv2.destroyAllWindows()

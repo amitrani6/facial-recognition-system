@@ -1,3 +1,10 @@
+#This file contains seven functions that will be used to detect faces
+#in pictures, extract face embeddings from the FaceNet model, and compare
+#face embeddings
+
+
+##########################################################
+
 #Import the necessary libraries
 
 import numpy as np
@@ -20,15 +27,17 @@ facenet_model.load_weights('FaceNet_Model/facenet_keras_weights.h5')
 
 #####The Main Functions For Image Detection And Prediction#####
 
-#Function 1: Takes in a file path and obtains the pixels of an image
-#Converts the image to RGB format if Black and White
+#Function 1: Takes in an image file path and obtains the pixels of that image
+#Converts the image to RGB format if Black and White and returns the image
+#as a three dimensional array
+
 def obtain_image_pixels(filename):
     image = Image.open(filename)
     image = image.convert('RGB')
     return asarray(image)
 
 
-#Function 2: Plots the image array given
+#Function 2: Plots the image array given as a parameter
 def plot_face(face_data):
     plt.axis('off')
     plt.imshow(face_data)
@@ -36,8 +45,8 @@ def plot_face(face_data):
 
 
 
-#Function 3: Given an image array this function returns the faces detected as a list
-#The list is empty if nothing is detected
+#Function 3: Given an image array this function returns the locations of
+#all faces detected as a list. The list is empty if nothing is detected
 def get_all_faces(image_array):
 
     #Crop the face further with MTCNN
@@ -52,6 +61,7 @@ def get_all_faces(image_array):
 
 
 #Function 4: Takes in the image array and a face location and returns the resized face as an array
+#The margin is the number of pixels outside of the face box to include in the cropped picture
 def resize_picture(image_array, face_box, dimensions = (160,160), margin = 0):
 
     #Set a margin boolean and while loop to try margin value
@@ -110,7 +120,8 @@ def get_all_resized_faces(all_image_pixels, dimensions = (160,160), margin = 0):
     return face_array_list
 
 
-#Function 6: Takes in one face array and makes a prediction
+#Function 6: Takes in one face array and makes a prediction (returns the 128 length
+#face embedding vector)
 #This function is adapted from "Deep Learning for Computer Vision"
 #Page 488 by Jason Brownlee
 def make_a_prediction(face_array):
@@ -128,7 +139,15 @@ def make_a_prediction(face_array):
     return yhat[0]
 
 
-#Cosine Similarity from Danushka
+#Function 7: Takes in two vectors and returns the cosine similarity (a number
+#between -1 and 1). The first vector is the embedding from the data frame, the
+#second vector is the embedding from the user.
+
+#This functiion comes from Danushka Bollegala's blog on "NumPy Basics"
+#Scikit Learn's Cosine Similarity function took 8 seconds to run through
+#the data frame, 4x as long as this NumPy implementation
+#http://danushka.net/lect/dm/Numpy-basics.html
+
 def findCosineSimilarity(source_representation, user_representation):
     try:
         cos = np.dot(source_representation, user_representation) / (np.sqrt(np.dot(source_representation, source_representation)) * np.sqrt(np.dot(user_representation, user_representation)))
