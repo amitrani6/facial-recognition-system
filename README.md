@@ -2,6 +2,8 @@
 
 A program that determines the celebrity or politician that a person most closely resembles using the FaceNet CNN and images from IMDB and Wikipedia.
 
+# Project Summary
+
 # The Data
 
 # EDA/Image Selection
