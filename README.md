@@ -4,7 +4,7 @@ A program that determines the celebrity or politician that a person most closely
 
 # The Data
 
-# EDA
+# EDA/Image Selection
 
 # The Model
 
