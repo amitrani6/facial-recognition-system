@@ -4,6 +4,8 @@ A program that determines the celebrity or politician that a person most closely
 
 # Project Summary
 
+## Project Outline
+
 # The Data
 
 # EDA/Image Selection
