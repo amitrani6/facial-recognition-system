@@ -8,8 +8,8 @@
   1.	**FaceNet_Model/** - A folder containing the Keras FaceNet model and weights
   2.	**Photo_Dataframes/** - A folder containing the metadata and vector embeddings of all faces in the database
   3.	**image_data/** - A folder containing the user images and imdb/wikipedia images (for size purposes a download link is included)
-  4.	.gitignore
-  5.	EDA .ipynb
+  4.	**.gitignore** - Contains the files excluded from this repository (images that collectively take up too much space and test notebooks)
+  5.	**EDA.ipynb** - Contains both Exploratory Data Analysis and the methodology for eliminating irrelevant images 
   6.	FaceNet Obtain Embeddings.ipynb
   7.	README.md
   8.	doppelganger_finder.py
