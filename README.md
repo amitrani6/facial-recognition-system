@@ -5,8 +5,8 @@
 # Project Summary
 
 ## Repository Contents
-  1.	FaceNet_Model/
-  2.	Photo_Dataframes/
+  1.	**FaceNet_Model/** - A folder containing the Keras FaceNet model and weights
+  2.	**Photo_Dataframes/** - A folder containing the metadata and vector embeddings of all faces in the database
   3.	image_data/
   4.	.gitignore
   5.	EDA .ipynb
