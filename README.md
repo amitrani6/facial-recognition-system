@@ -23,44 +23,44 @@ The following 11 files and 3 folders are included in this repository:
 
 # The Data
 
-The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using OpenCV's cascade classifier. I downloaded the two cropped faces folders which total 8 GB.
+The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using OpenCV's cascade classifier. I downloaded the two cropped faces zip files which total 8 GB.
 
-I did not include the images in this repository because of size limitations. The **imdb_data/** and **wiki_data/** subfolders are stored on my local machine in the **image_data/** folder. Each of these folders contain a **.mat** file of metadata and 100 subfolders containing images of cropped faces.
+I did not include the images in this repository because of size limitations. The **imdb_data/** and **wiki_data/** subfolders are stored on my local machine in the **image_data/** folder. Each of these folders contain a **.mat** file of metadata and 100 subfolders containing images of cropped faces, which is how the two .tar files (*downloaded from ETH Zürich link above*) appear when they are unzipped.
 
 The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb** contain the process of converting the matlab files to pandas dataframes. I save each dataframe as a **.csv** file in the **Photo_Dataframes/** folder. Both the imdb and wikipedia metadata contain similar columns. The first five rows of the combined data frame is below:
 
 ![Metadata Data Frame Head](/image_data/Images_for_ReadMe/dataframe_header.png)
 
 
-The Metadata Mainframe Information
+**The Metadata Mainframe Information**
 
-Given:
+**Given**:
 
--name: Name of the person
+-**name**: Name of the person
 
--dob: date of birth (Matlab serial date number)
+-**dob**: date of birth (Matlab serial date number)
 
--gender: 0 for female and 1 for male, NaN if unknown
+-**gender**: 0 for female and 1 for male, NaN if unknown
 
--photo_taken: year when the photo was taken
+-**photo_taken**: year when the photo was taken
 
--full_path: path to the image file
+-**full_path**: path to the image file
 
--face_location: location of the face in the uncropped image.
+-**face_location**: location of the face in the uncropped image.
 
--face_score: detector score (the higher the better). Inf implies that no face was found in the image and the face_location then just returns the entire image
+-**face_score**: detector score (the higher the better). Inf implies that no face was found in the image and the face_location then just returns the entire image
 
--second_face_score: detector score of the face with the second highest score. I use this to remove group images by setting a threshold (explained below)
+-**second_face_score**: detector score of the face with the second highest score. I use this to remove group images by setting a threshold (explained below)
 
-Not Seen In This Notebook:
+**Not Seen In The Above Dataframe**:
 
--celeb_names (IMDB only): list of all celebrity names
+-**celeb_names (IMDB only)**: list of all celebrity names
 
--celeb_id (IMDB only): imdb index of celebrity name (obsolete, this no longer corresponds to imdb profiles
+-**celeb_id (IMDB only)**: imdb index of celebrity name (obsolete, this no longer corresponds to imdb profiles)
 
-Created:
+**Created**:
 
--age_when_taken birthdate subtracted from 'photo_taken' **Not Seen In This Image**
+-**age_when_taken**: birthdate subtracted from 'photo_taken' **Not Seen In This Image**
 
 # EDA/Image Selection
 
