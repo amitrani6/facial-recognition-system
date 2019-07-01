@@ -29,7 +29,7 @@ I did not include the images in this repository because of size limitations. The
 
 The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb** contain the process of converting the matlab files to pandas dataframes. I save each dataframe as a **.csv** file in the **Photo_Dataframes/** folder. Both the imdb and wikipedia metadata contain similar columns. The first five rows of the combined data frame is below:
 
-![Metadata Data Frame Head](/image_data/Images_for_ReadMe/dataframe_head.png)
+![Metadata Data Frame Head](/image_data/Images_for_ReadMe/dataframe_header.png)
 
 # EDA/Image Selection
 
