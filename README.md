@@ -78,7 +78,7 @@ The birthdays associated with each profile and image were webscraped off of IMDB
 
 ### Face Scores
 
-Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a Deformable Parts Model described in the paper [Face Detection Without The Bells And Whistles] (http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*).
+Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a Deformable Parts Model described in the paper [Face Detection Without The Bells And Whistles](http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*).
 
 ![Face Score Distribution](/image_data/Images_for_ReadMe/Primary_Face_Score.jpg)
 
