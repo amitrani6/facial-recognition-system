@@ -64,7 +64,12 @@ The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb*
 
 # EDA/Image Selection
 
-The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb**
+The **EDA.ipynb** notebook contains both the Exploratory Data Analysis and the methodology for eliminating images that are either missing metadata or have low face scores.
+
+### Face Scores
+
+Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a Deformable Parts Model described in the paper [Face Detection Without The Bells And Whistles] (http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*). The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will lower the score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the the actual person tagged has a lower face score than someone else in the photo.
+
 
 # The Model
 
