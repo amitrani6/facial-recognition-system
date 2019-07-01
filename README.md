@@ -31,6 +31,37 @@ The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb*
 
 ![Metadata Data Frame Head](/image_data/Images_for_ReadMe/dataframe_header.png)
 
+
+The Metadata Mainframe Information
+
+Given:
+
+-name: Name of the person
+
+-dob: date of birth (Matlab serial date number)
+
+-gender: 0 for female and 1 for male, NaN if unknown
+
+-photo_taken: year when the photo was taken
+
+-full_path: path to the image file
+
+-face_location: location of the face in the uncropped image.
+
+-face_score: detector score (the higher the better). Inf implies that no face was found in the image and the face_location then just returns the entire image
+
+-second_face_score: detector score of the face with the second highest score. I use this to remove group images by setting a threshold (explained below)
+
+Not Seen In This Notebook:
+
+-celeb_names (IMDB only): list of all celebrity names
+
+-celeb_id (IMDB only): imdb index of celebrity name (obsolete, this no longer corresponds to imdb profiles
+
+Created:
+
+-age_when_taken birthdate subtracted from 'photo_taken' **Not Seen In This Image**
+
 # EDA/Image Selection
 
 The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb**
