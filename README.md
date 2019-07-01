@@ -21,9 +21,9 @@ The following 11 files and 3 folders are included in this repository:
   13.	**requirements.txt** - The requirements file for running **doppelganger_finder.py**
   14.	**wiki_metadata_cleanup.ipynb** - The metadata for the images from Wikipedia (conversion from matlab)
 
-
-
 # The Data
+
+The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)).
 
 # EDA/Image Selection
 
