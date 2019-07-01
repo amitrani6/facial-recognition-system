@@ -23,9 +23,15 @@ The following 11 files and 3 folders are included in this repository:
 
 # The Data
 
-The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)).
+The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using OpenCV's cascade classifier. I downloaded the two cropped faces folders which total 7 GB.
+
+I did not include the images in this repository because of size limitations. The **imdb_data/** and **wiki_data/** subfolders are stored on my local machine in the **image_data/** folder. Each of these folders contain a **.mat** file of metadata and 100 subfolders containing images of cropped faces.
+
+The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb** contain the process of 
 
 # EDA/Image Selection
+
+The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb**
 
 # The Model
 
