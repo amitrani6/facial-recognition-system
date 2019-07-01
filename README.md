@@ -72,6 +72,8 @@ I eliminated the 124 images with missing names as I would not be able to associa
 
 ### Birthday Conversion
 
+![Age Distribution](/image_data/Images_for_ReadMe/Age.jpg)
+
 The birthdays associated with each profile and image were webscraped off of IMDB and Wikipedia. If the birthdate was incomplete (only the year given) or missing then the first date found on the profile was used, or the date was missing altogether. I eliminated the 129 images that had metadata with missing or incomplete dates of birth.
 
 ### Face Scores
