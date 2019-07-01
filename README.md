@@ -80,11 +80,11 @@ The birthdays associated with each profile and image were webscraped off of IMDB
 
 Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a Deformable Parts Model described in the paper [Face Detection Without The Bells And Whistles] (http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*).
 
-![Face Score Distribution](/image_data/Images_for_ReadMe/Primary Face Score.jpg)
+![Face Score Distribution](/image_data/Images_for_ReadMe/Primary_Face_Score.jpg)
 
 The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will lower the score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the the actual person tagged has a lower face score than someone else in the photo.
 
-![A Group Photo With Similar Face Scores](/image_data/Images_for_ReadMe/Two Separate Files With the Same Face Score.jpg)
+![A Group Photo With Similar Face Scores](/image_data/Images_for_ReadMe/Two_Separate_Files_With_the_Same_Face_Score.jpg)
 
 The both Geoffrey Arend and Christina Hendricks' IMDB profiles included the above image. Both profiles listed Geoffrey's face as the primary face because it obtained the highest face score. To resolve this issue I created a maximum threshold of secondary face score as a percentage of primary face score to reduce the impact of group photos. For instance, the above picture has a value of 0.8760 (4.0074/4.5745). If the maximum threshold is below this value then this picture would be eliminated from the data set. I eliminated all photos with a primary face score below 1 and photos with a secondary face score as a percentage of primary face score above 0.25. This threshold was selected after trial and error with both celebrity images passed into the system and user images. Of the 511,817 images 214,617 remained.
 
