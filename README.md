@@ -23,7 +23,7 @@ The following 11 files and 3 folders are included in this repository:
 
 # The Data
 
-The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using OpenCV's cascade classifier. I downloaded the two cropped faces zip files which total 8 GB.
+The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using a Deformable Parts Model (DPM) described in the paper [Face Detection Without The Bells And Whistles](http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*). I downloaded the two cropped faces zip files which total 8 GB.
 
 I did not include the images in this repository because of size limitations. The **imdb_data/** and **wiki_data/** subfolders are stored on my local machine in the **image_data/** folder. Each of these folders contain a **.mat** file of metadata and 100 subfolders containing images of cropped faces, which is how the two .tar files (*downloaded from ETH Zürich link above*) appear when they are unzipped.
 
@@ -78,7 +78,7 @@ The birthdays associated with each profile and image were webscraped off of IMDB
 
 ### Face Scores
 
-Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a Deformable Parts Model described in the paper [Face Detection Without The Bells And Whistles](http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*).
+Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a DPM.
 
 ![Face Score Distribution](/image_data/Images_for_ReadMe/Primary_Face_Score.jpg)
 
