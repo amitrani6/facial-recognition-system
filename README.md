@@ -1,6 +1,6 @@
 # facial-recognition-system
 
-**DOPPELGÄNGER: Facial Recognition System** is a program that determines the celebrity or politician that a person most closely resembles using the FaceNet CNN and images from IMDB and Wikipedia.
+The **DOPPELGÄNGER: Facial Recognition System** is a program that determines the celebrity or politician that a person most closely resembles using the FaceNet CNN and images from IMDB and Wikipedia.
 
 ## Repository Contents
 
