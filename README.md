@@ -82,7 +82,7 @@ Each image's corresponding row of metadata contains a primary face score (*face_
 
 ![Face Score Distribution](/image_data/Images_for_ReadMe/Primary_Face_Score.jpg)
 
-The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will lower the score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the the actual person tagged has a lower face score than someone else in the photo.
+The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will lower the score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the actual person tagged has a lower face score than someone else in the photo.
 
 ![A Group Photo With Similar Face Scores](/image_data/Images_for_ReadMe/Two_Separate_Files_With_the_Same_Face_Score.jpg)
 
