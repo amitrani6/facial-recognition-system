@@ -78,11 +78,11 @@ The birthdays associated with each profile and image were webscraped off of IMDB
 
 ### Face Scores
 
-Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with a DPM.
+Each image's corresponding row of metadata contains a primary face score (*face_score*) and a secondary face score (*second_face_score*). The faces in the dataset were detected and scored with the DPM from the above paper.
 
 ![Face Score Distribution](/image_data/Images_for_ReadMe/Primary_Face_Score.jpg)
 
-The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will lower the score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the actual person tagged has a lower face score than someone else in the photo.
+The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will have a lower score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the actual person tagged has a lower face score than someone else in the photo.
 
 ![A Group Photo With Similar Face Scores](/image_data/Images_for_ReadMe/Two_Separate_Files_With_the_Same_Face_Score.jpg)
 
@@ -90,5 +90,7 @@ The both Geoffrey Arend and Christina Hendricks' IMDB profiles included the abov
 
 
 # The Model
+
+I used the 
 
 # The Program
