@@ -23,7 +23,7 @@ The following 11 files and 3 folders are included in this repository:
 
 # The Data
 
-The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using a Deformable Parts Model (DPM) described in the paper [Face Detection Without The Bells And Whistles](http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*). I downloaded the two cropped faces tar files which total 8 GB.
+The images and metadata come from ETH Zürich's Computer Vision Lab. There are 460,723 images from IMDB and 62,328 images from Wikipedia that correspond to +70k individuals. The data was collected in 2015 by Rasmus Rothe, Radu Timofte, and Luc Van Gool for their papers on age detection ([Deep expectation of real and apparent age from a single image without facial landmarks](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)). The faces are already cropped by the ETH Zürich team using a Deformable Parts Model (DPM) described in the paper [Face Detection Without The Bells And Whistles](http://rodrigob.github.io/documents/2014_eccv_face_detection_with_supplementary_material.pdf) (*by Markus Mathias, Rodrigo Benenson, Marco Pedersoli, and Luc Van Gool*). I downloaded the two cropped faces .tar files which total 8 GB.
 
 I did not include the images in this repository because of size limitations. The **imdb_data/** and **wiki_data/** subfolders are stored on my local machine in the **image_data/** folder. Each of these folders contain a **.mat** file of metadata and 100 subfolders containing images of cropped faces, which is how the two .tar files (*downloaded from ETH Zürich link above*) appear when they are unzipped.
 
@@ -91,6 +91,15 @@ The both Geoffrey Arend and Christina Hendricks' IMDB profiles included the abov
 
 # The Model
 
-I used the 
+I used a Keras implementation of the FaceNet Convolutional Neural Network (CNN) model to obtain face embeddings for each image in the dataset and for each face in the user image. Face Embeddings are vector representations of a face which can be compared to each other with a similarity metric; in FaceNet's case these vectors have a length of 128 elements.
+
+The process of obtaining a face embedding from FaceNet is:
+
+  1. **Crop the faces from an image** Because my dataset of images is already cropped to the most prominent face, I can skip the initial cropping of the faces. I will later describe how I crop faces when I discuss user images below.
+  2. **Input a resized face image.**
+
+The architecture of the FaceNet model is below:
+
+**Why FaceNet over VGG**
 
 # The Program
