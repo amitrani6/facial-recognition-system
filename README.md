@@ -96,10 +96,10 @@ I used a Keras implementation of the FaceNet Convolutional Neural Network (CNN) 
 The process of obtaining a face embedding from FaceNet is:
 
   1. **Crop the faces from an image** Because my dataset of images is already cropped to the most prominent face, I can skip the initial cropping of the faces. I will later describe how I crop faces when I discuss user images below.
-  2. **Input a resized face image.**
+  2. **Input a resized face image.** The FaceNet model requires all input image tensors to be the size 160x160x3. This means that the image width and legnth is to be 160 pixels by 160 pixels and that there must be three color channels in the RGB format. If the images are grayscale then they must be converted.
+  3. **Normalize the pixels** Once the image is resized the pixels must be normalized using z-score normalization, as required by the FaceNet model. In z-score normalization 
 
 The architecture of the FaceNet model is below:
 
 **Why FaceNet over VGG**
 
-# The Program
