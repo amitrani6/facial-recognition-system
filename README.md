@@ -103,5 +103,7 @@ The process of obtaining a face embedding from FaceNet is:
 
 
 
-**Why FaceNet over VGG**
+I selected the FaceNet model over the VGG model for two reasons. The first is that FaceNet achieved better results on benchmark datasets. The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from VGG is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use.
+
+
 
