@@ -106,9 +106,11 @@ The process of obtaining a face embedding from FaceNet is:
 
 ![FaceNet Architecture](/image_data/Images_for_ReadMe/FaceNet_Layers.png)
 
-Source: [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/pdf/1503.03832.pdf) (*by Florian Schroff, Dmitry Kalenichenko, and James Philbin*)
+Source: [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/pdf/1503.03832.pdf) (*by Florian Schroff, Dmitry Kalenichenko, and James Philbin of Google*)
 
 *The above is a summary structure chart of the FaceNet NN1 Inception newtwork architecture which can be found in the original model paper cited above. I used the FaceNet NN3 Inception architecture which takes an input size of 160x160x3. The complete model visualization chart was generated in **Keras_FaceNet_Model_Structure.ipynb** and is stored in **image_data/Images_for_ReadMe/** as **FaceNet_Model_Structure.png**. I used Hiroki Taniai's Keras implementation which can be found [here](https://github.com/nyoki-mtl/keras-facenet).
+
+
 
 I selected the FaceNet model over the Visual Geometry Group (VGG16) model for two reasons: The first reason is that FaceNet achieved better results on benchmark datasets; The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from the VGG model is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use. The VGG architecture can be found here: [Deep Face Recognition](http://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf) (*Omkar M. Parkhi, Andrea Vedaldi, Andrew Zisserman).
 
