@@ -101,7 +101,7 @@ The process of obtaining a face embedding from FaceNet is:
   4. **Add a dimension to the image tensor** A fourth dimension is added to the tensor so the model can keep track of what sample/observation group the image belongs to while it moves through each layer of the model.
   5. **Obtain the face embedding vector** The architecture of the FaceNet model is below:
 
-
+![FaceNet Architecture](/image_data/Images_for_ReadMe/FaceNet_Layers.png)
 
 I selected the FaceNet model over the VGG model for two reasons. The first is that FaceNet achieved better results on benchmark datasets. The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from VGG is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use.
 
