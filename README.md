@@ -4,7 +4,7 @@ The **DOPPELGÄNGER: Facial Recognition System** is a program that determines th
 
 ## Repository Contents
 
-The following 11 files and 3 folders are included in this repository:
+The following 12 files and 3 folders are included in this repository:
 
   1.	**FaceNet_Model/** - A folder containing the Keras FaceNet model and weights
   2.	**Photo_Dataframes/** - A folder containing the metadata and vector embeddings of all faces in the database
@@ -99,9 +99,15 @@ The process of obtaining a face embedding from FaceNet is:
   2. **Input a resized face image.** The FaceNet model requires all input image tensors to be the size 160x160x3. This means that the image width and legnth is to be 160 pixels by 160 pixels and that there must be three color channels in the RGB format. If the images are grayscale then they must be converted.
   3. **Normalize the pixels** Once the image is resized the pixels must be normalized using z-score normalization, as required by the FaceNet model. In z-score normalization the mean of all the pixels is subtracted from each pixel and then divided by the standard deviation of the pixels.
   4. **Add a dimension to the image tensor** A fourth dimension is added to the tensor so the model can keep track of what sample/observation group the image belongs to while it moves through each layer of the model.
-  5. **Obtain the face embedding vector** The architecture of the FaceNet model is below:
+  5. **Obtain the face embedding vector** The face embeddings for each image is obtained by passing the image tensor through the FaceNet Model with the model.predict() method.
+  
+ The architecture of the FaceNet model is below:
 
 ![FaceNet Architecture](/image_data/Images_for_ReadMe/FaceNet_Layers.png)
+Source: [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/pdf/1503.03832.pdf) (*by Florian Schroff, Dmitry Kalenichenko, and James Philbin*)
+
+*The above is a summary structure chart of the FaceNet NN1 Inception newtwork architecture. I used the FaceNet NN3 Inception architecture which takes an input size of 160x160x3. The complete model visualization chart was generated in **Keras_FaceNet_Model_Structure.ipynb** and is stored in **image_data/Images_for_ReadMe/** as **FaceNet_Model_Structure.png**. I used Hiroki Taniai's Keras implementation which can be found [here](https://github.com/nyoki-mtl/keras-facenet).
+
 
 I selected the FaceNet model over the VGG model for two reasons. The first is that FaceNet achieved better results on benchmark datasets. The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from VGG is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use.
 
