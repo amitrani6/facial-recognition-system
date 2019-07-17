@@ -104,6 +104,7 @@ The process of obtaining a face embedding from FaceNet is:
  The architecture of the FaceNet model is below:
 
 ![FaceNet Architecture](/image_data/Images_for_ReadMe/FaceNet_Layers.png)
+
 Source: [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/pdf/1503.03832.pdf) (*by Florian Schroff, Dmitry Kalenichenko, and James Philbin*)
 
 *The above is a summary structure chart of the FaceNet NN1 Inception newtwork architecture. I used the FaceNet NN3 Inception architecture which takes an input size of 160x160x3. The complete model visualization chart was generated in **Keras_FaceNet_Model_Structure.ipynb** and is stored in **image_data/Images_for_ReadMe/** as **FaceNet_Model_Structure.png**. I used Hiroki Taniai's Keras implementation which can be found [here](https://github.com/nyoki-mtl/keras-facenet).
