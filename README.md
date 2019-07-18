@@ -121,4 +121,21 @@ I obtain the face embeddings for each image in the dataset in the notebook **Fac
 
 # The Program
 
-The files
+The file **doppelganger_finder.py** is the facial recognition python script; it calls **photo_program.py** to take a user photo and **face_detection_functions.py** to evaluate the user photo taken.
+
+## photo_program.py
+
+**photo_program.py** contains one function that uses the OpenCV library to (1) open the primary camera on a device, (2) display a camera wimdow on the screen, (3) take a photo with that camera, and (4) save that image as **user.jpg** in the folder **image_data/user_images/**.
+
+## face_detection_functions.py
+
+**face_detection_functions.py** contains seven functions.
+
+
+
+
+doppelganger_finder.py
+environment.yml
+face_detection_functions.py
+photo_program.py
+requirements.txt
