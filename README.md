@@ -89,7 +89,6 @@ The face scores in this dataset range from negative infinity (no face was detect
 
 Both Geoffrey Arend's and Christina Hendricks' IMDB profiles included the above image. Both profiles listed Geoffrey's face as the primary face because it obtained the highest face score. To resolve this issue I created a maximum threshold of secondary face score as a percentage of primary face score to reduce the impact of group photos. For instance, the above picture has a value of 0.8760 (4.0074/4.5745). If the maximum threshold is below this value then this picture would be eliminated from the data set. I eliminated all photos with a primary face score below 1 and photos with a secondary face score as a percentage of primary face score above 0.25. This threshold was selected after trial and error with both celebrity images passed into the system and user images. Of the 511,817 images 214,617 remained belonging to 48,138 individuals.
 
-
 # The Model
 
 I used a Keras implementation of the FaceNet Convolutional Neural Network (CNN) model to obtain face embeddings for each image in the dataset and for each face in the user image. Face Embeddings are vector representations of a face which can be compared to each other with a similarity metric; in FaceNet's case these vectors have a length of 128 elements.
@@ -112,8 +111,7 @@ Source: [FaceNet: A Unified Embedding for Face Recognition and Clustering](https
 
 The FaceNet CNN works by first picking up minor facial features in convolution layers utilizing rectified linear unit (ReLU) activation functions. The existance of features is then combined in pooling layers (*FaceNet uses max pooling to summarize the features of the previous layers*). This step determines if more complex facial patterns exist in a specific observation vector. There are also normalization layers that rescale the results of the activation functions (removing the mean of the vector and dividing by the standard deviation of the vector) before they are passed through to further layers. Each face vector is then concatenated in the final layers and normalized one final time achieving a final embedding size of 128 elements. Face embeddings from FaceNet belonging to the same person will have a smaller distance than face embeddings belonging to two different people. When used as a classifier, as in the task of facial recognition, natural changes will not affect the identification ability of FaceNet (*i.e. changes in hair styles/color, wearing accessories like glasses, etc.*).
 
-
 I selected the FaceNet model over the Visual Geometry Group (VGG16) model for two reasons: The first reason is that FaceNet achieved better results on benchmark datasets; The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from the VGG model is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use. The VGG architecture can be found here: [Deep Face Recognition](http://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf) (*by Omkar M. Parkhi, Andrea Vedaldi, and Andrew Zisserman*).
 
-
+# The Program
 
