@@ -112,7 +112,7 @@ Source: [FaceNet: A Unified Embedding for Face Recognition and Clustering](https
 
 
 
-I selected the FaceNet model over the Visual Geometry Group (VGG16) model for two reasons: The first reason is that FaceNet achieved better results on benchmark datasets; The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from the VGG model is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use. The VGG architecture can be found here: [Deep Face Recognition](http://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf) (*by Omkar M. Parkhi, Andrea Vedaldi, Andrew Zisserman*).
+I selected the FaceNet model over the Visual Geometry Group (VGG16) model for two reasons: The first reason is that FaceNet achieved better results on benchmark datasets; The second reason is that the embedding vector produced by FaceNet is only 128 elements long while the vector from the VGG model is 2622 elements long. The VGG vectors would have been too large to store in the .csv format that I use. The VGG architecture can be found here: [Deep Face Recognition](http://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf) (*by Omkar M. Parkhi, Andrea Vedaldi, and Andrew Zisserman*).
 
 
 
