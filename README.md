@@ -131,7 +131,18 @@ The file **doppelganger_finder.py** is the facial recognition python script; it 
 
 ## face_detection_functions.py
 
-**face_detection_functions.py** contains seven functions.
+**face_detection_functions.py** contains seven functions: (1) A function to open an image and obtain an array of pixel intensity (*FaceNet requires images to be in RGB channel format*), (2) A function for plotting an image given an array, (3) a function for locating all the faces in the image, (4) A function to resize an individual face array (*FaceNet requires an image input size of 160 x 160 x 3 - corresponding to length x width x number of channels), (5) A function to return all the resized faces found in an image, (6) A function to obtain the face embeddings from each image using the model.predict() method, and (7) a function to compare two face embeddings utilizing cosine similarity.
+
+I selected the MTCNN (*Multi-task Cascaded Convolutional Networks*) library for the facial detection of my user images because of its better performance. The images in the dataset were cropped utilizing the DPM model from ETH Zürich cited above. One of the first images in my dataset belongs to Fred Astaire's imdb profile (*his profile id is numerically first which is why his images appear in the beginning of my dataset*). The image is of Fred Astaire and Barbara Hancock (*see below*) from the 1968 movie Finian's Rainbow:
+
+![Finian's Rainbow](/image_data/Images_for_ReadMe/Fred_Astaire_Finian's_Rainbow.jpg)
+
+Fred Astaire's face is partially obscured by a hat in this image. The DPM model did not score Astaire's face because the eyes were not prominent, so only Barbara Hancock's face was scored. Even if I kept only images with one detected face this image would still be incorrectly labeled as Fred Astaire in my data set. I eliminated this image using a minimum primary face score. For the detection of faces in user images I opted to use Iván de Paz Centeno's MTCNN library which successfully detected both Fred Astaire's and Barbara Hancock's face.
+
+Multi-task Cascaded Convolutional Networks (*MTCNN*) utilizes both a cascade structure and CNNs to detect features in the face. MTCNN was created by Kaipeng Zhang, Zhanpeng Zhang, Zhifeng Li, and Yu Qiao of IEEE in the paper [Joint Face Detection and Alignment using
+Multi-task Cascaded Convolutional Networks](https://arxiv.org/pdf/1604.02878.pdf). I use Iván de Paz Centeno's implementation found on his GitHub [here](https://github.com/ipazc/mtcnn). A visualization of the MTCNN library applied to Fred Astaire's image is below:  
+
+![MTCNN Facial Detection Process](/image_data/Images_for_ReadMe/MTCNN_Facial_Detection_Process.jpg)
 
 
 
