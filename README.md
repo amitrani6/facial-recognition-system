@@ -161,4 +161,4 @@ I included the files **environment.yml** and **requirements.txt** for compatibil
 1. Brownlee, Jason. Deep Learning for Computer Vision: Image Classification, Object Detection and Face Recognition in Python.
 Section VII, Face Recognition
 
-2. Serengil, Sefik Ilkin. “Celebrity Look-Alike Face Recognition with Deep Learning in Keras.” Celebrity Look-Alike Face Recognition with Deep Learning in Keras, 5 May 2019, [sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/](sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/)
+2. Serengil, Sefik Ilkin. “Celebrity Look-Alike Face Recognition with Deep Learning in Keras.” Celebrity Look-Alike Face Recognition with Deep Learning in Keras, 5 May 2019, [https://sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/](https://sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/).
