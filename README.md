@@ -144,7 +144,7 @@ Multi-task Cascaded Convolutional Networks](https://arxiv.org/pdf/1604.02878.pdf
 
 ![MTCNN Facial Detection Process](/image_data/Images_for_ReadMe/MTCNN_Facial_Detection_Process.jpg)
 
-
+I use cosine similarity to determine how similar a user face is to every face in the dataset. Cosine similarity in this case measures the distance between two vectors utilizing a score range from -1 to +1. Face embeddings that are more similar will have scores closer to +1.
 
 
 doppelganger_finder.py
