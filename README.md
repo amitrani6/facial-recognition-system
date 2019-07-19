@@ -154,9 +154,13 @@ The while loop takes a user photo, locates all the faces, uses the FaceNet model
 
 ![Doppelganger_Results](/image_data/Images_for_ReadMe/doppelganger_results.jpg)
 
+I included the files **environment.yml** and **requirements.txt** for compatibility purposes. The anaconda environment commands can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
-doppelganger_finder.py
-environment.yml
-face_detection_functions.py
-photo_program.py
-requirements.txt
+# Sources
+
+1. Brownlee, Jason. Deep Learning for Computer Vision: Image Classification, Object Detection and Face Recognition in Python.
+Section VII, Face Recognition
+
+2. Serengil, Sefik Ilkin. “Celebrity Look-Alike Face Recognition with Deep Learning in Keras.” Celebrity Look-Alike Face Recognition with Deep Learning in Keras, 5 May 2019, sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/.
+
+# Key Takeaways
