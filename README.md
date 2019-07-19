@@ -144,7 +144,15 @@ Multi-task Cascaded Convolutional Networks](https://arxiv.org/pdf/1604.02878.pdf
 
 ![MTCNN Facial Detection Process](/image_data/Images_for_ReadMe/MTCNN_Facial_Detection_Process.jpg)
 
-I use cosine similarity to determine how similar a user face is to every face in the dataset. Cosine similarity in this case measures the distance between two vectors utilizing a score range from -1 to +1. Face embeddings that are more similar will have scores closer to +1. I originally utilized Scikit-learn's cosine_similarity() method, however this function took four times as long as Danushka Bollegala's Numpy implementation [found on his blog here](http://danushka.net/lect/dm/Numpy-basics.html) to run through the dataset.
+I use cosine similarity to determine how similar a user face is to every face in the dataset. Cosine similarity in this case measures the distance between two vectors utilizing a score range from -1 to +1. Face embeddings that are more similar will have scores closer to +1. I originally utilized Scikit-learn's cosine_similarity() method, however this function took four times as long as Danushka Bollegala's Numpy implementation [found on his blog here](http://danushka.net/lect/dm/Numpy-basics.html) to run through the dataset. As I was doing a live demonstration I needed the faster solution.
+
+## doppelganger_finder.py
+
+This python script contains the live demonstration. The script (1) loads the five dataframes containing the face embeddings, (2) converts the face embeddings saved as strings to Numpy arrays (*this step is only performed once and takes about two minutes*), (3) concatenates the five dataframes, and (4) enters a while loop that calls the functions from **photo_program.py** and **face_detection_functions.py**.
+
+The while loop takes a user photo, locates all the faces, uses the FaceNet model to obtain the user's face embeddings, applies cosine similarity to each photo in the dataset (*this step takes about two seconds*), and displays the most similar looking faces in the dataset. The script then asks if the user wants to take another photo. My results are below:
+
+![Doppelganger_Results](/image_data/Images_for_ReadMe/doppelganger_results.jpg)
 
 
 doppelganger_finder.py
