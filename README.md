@@ -65,7 +65,7 @@ The notebooks **imdb_metadata_cleanup.ipynb** and **wiki_metadata_cleanup.ipynb*
 
 # EDA/Image Selection
 
-The **EDA.ipynb** notebook contains both the Exploratory Data Analysis and the methodology for eliminating images that are either missing metadata or have low face scores. There are 523,051 images in the initial dataset corresponding to +70k indivduals.
+The **EDA.ipynb** notebook contains both the Exploratory Data Analysis and the methodology for eliminating images that are either missing metadata or have low face scores. There are 523,051 images in the initial dataset corresponding to +70k individuals.
 
 ### Missing Names
 
@@ -83,7 +83,7 @@ Each image's corresponding row of metadata contains a primary face score (*face_
 
 ![Face Score Distribution](/image_data/Images_for_ReadMe/Primary_Face_Score.jpg)
 
-The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will have a lower score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem in group photos, as the IMDB/Wikipedia profile often includes images where the actual person tagged has a lower face score than someone else in the photo.
+The face scores in this dataset range from negative infinity (no face was detected and the entire image is included) to approximately 8 (a high probability of a face being detected). An obscured or turned face will have a lower score. If multiple faces are detected then the primary face is assigned to the face with the highest score. This creates a problem with group photos, as the IMDB/Wikipedia profile often includes images where the actual person tagged has a lower face score than someone else in the photo.
 
 ![A Group Photo With Similar Face Scores](/image_data/Images_for_ReadMe/Two_Separate_Files_With_the_Same_Face_Score.jpg)
 
@@ -98,7 +98,7 @@ I used a Keras implementation of the FaceNet Convolutional Neural Network (CNN) 
 The process of obtaining a face embedding from FaceNet is:
 
   1. **Crop the faces from an image** Because my dataset of images is already cropped to the most prominent face, I can skip the initial cropping of the faces. I will later describe how I crop faces when I discuss user images below.
-  2. **Input a resized face image.** The FaceNet model requires all input image tensors to be the size 160x160x3. This means that the image width and legnth is to be 160 pixels by 160 pixels and that there must be three color channels in the RGB format. If the images are grayscale then they must be converted.
+  2. **Input a resized face image.** The FaceNet model requires all input image tensors to be the size 160x160x3. This means that the image width and length is to be 160 pixels by 160 pixels and that there must be three color channels in the RGB format. If the images are grayscale then they must be converted.
   3. **Normalize the pixels** Once the image is resized the pixels must be normalized using z-score normalization, as required by the FaceNet model. In z-score normalization the mean of all the pixels is subtracted from each pixel and then divided by the standard deviation of the pixels.
   4. **Add a dimension to the image tensor** A fourth dimension is added to the tensor so the model can keep track of what sample/observation group the image belongs to while it moves through each layer of the model.
   5. **Obtain the face embedding vector** The face embeddings for each image is obtained by passing the image tensor through the FaceNet Model with the model.predict() method.
@@ -125,7 +125,7 @@ The file **doppelganger_finder.py** is the facial recognition python script; it 
 
 ## photo_program.py
 
-**photo_program.py** contains one function that uses the OpenCV library to (1) open the primary camera on a device, (2) display a camera wimdow on the screen, (3) take a photo with that camera, and (4) save that image as **user.jpg** in the folder **image_data/user_images/**.
+**photo_program.py** contains one function that uses the OpenCV library to (1) open the primary camera on a device, (2) display a camera window on the screen, (3) take a photo with that camera, and (4) save that image as **user.jpg** in the folder **image_data/user_images/**.
 
 ## face_detection_functions.py
 
