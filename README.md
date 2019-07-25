@@ -2,7 +2,7 @@
 
 The **DOPPELGÄNGER: Facial Recognition System** is a program that determines the celebrity or politician that a person most closely resembles using the FaceNet CNN and images from IMDB and Wikipedia.
 
-Sample output from the Doppelgägner system is in the [description](## doppelganger_finder.py) of the **doppelganger_finder.py** script.
+Sample output from the Doppelgägner system is in the [description](#doppelganger_finder.py) of the **doppelganger_finder.py** script.
 
 ## Repository Contents
 
