@@ -89,7 +89,7 @@ The face scores in this dataset range from negative infinity (no face was detect
 
 Both Geoffrey Arend's and Christina Hendricks' IMDB profiles included the above image. Both profiles listed Geoffrey's face as the primary face because it obtained the highest face score. To resolve this issue I created a maximum threshold of secondary face score as a percentage of primary face score to reduce the impact of group photos. For instance, the above picture has a value of 0.8760 (4.0074/4.5745). If the maximum threshold is below this value then this picture would be eliminated from the data set. I eliminated all photos with a primary face score below 1 and photos with a secondary face score as a percentage of primary face score above 0.25. This threshold was selected after trial and error with both celebrity images passed into the system and user images. Of the 511,817 images 214,617 remained belonging to 48,138 individuals.
 
-*In the **EDA.ipynb** notebook I concatenate the two .csv files from IMDB and Wikipedia into one dataframe and save it as **All_Photo_Data.csv** in the **Photo_Dataframes/** folder.*
+*In the **EDA.ipynb** notebook I concatenate the two .csv files from IMDB and Wikipedia into one dataframe and save it as **All_Photo_Data.csv** in the `Photo_Dataframes/` folder.*
 
 # The Model
 
