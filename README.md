@@ -127,7 +127,7 @@ The file **doppelganger_finder.py** is the facial recognition python script; it 
 
 ## photo_program.py
 
-**photo_program.py** contains one function that uses the OpenCV library to (1) open the primary camera on a device, (2) display a camera window on the screen, (3) take a photo with that camera, and (4) save that image as **user.jpg** in the folder **image_data/user_images/**.
+**photo_program.py** contains one function that uses the OpenCV library to (1) open the primary camera on a device, (2) display a camera window on the screen, (3) take a photo with that camera, and (4) save that image as **user.jpg** in the folder `image_data/user_images/`.
 
 ## face_detection_functions.py
 
